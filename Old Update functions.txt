@@ -1,0 +1,79 @@
+            // Update rules 
+
+            int UpdateCellVanilla(int[,] Cells, int I, int T, int N)
+            {
+                if (I == 0)
+                {
+                    Cells[I, T] = (Cells[I, T - 1] 
+                        + Cells[N - 1, T - 1] 
+                        + Cells[1, T - 1]) % 2;
+                }
+                else if (I == N - 1)
+                {
+                    Cells[I, T] = (Cells[I, T - 1] 
+                        + Cells[N - 2, T - 1] 
+                        + Cells[0, T - 1]) % 2;
+                }
+                else
+                {
+                    Cells[I, T] = (Cells[I, T - 1] 
+                        + Cells[I - 1, T - 1] 
+                        + Cells[I + 1, T - 1]) % 2;
+                }
+
+                return Cells[I, T];
+            }
+
+
+            int UpdateCellStochastic(int[, ] Cells, int I, int T, int N)
+            {
+                Random random = new Random();
+
+                if (I == 0)
+                {
+                    Cells[I, T] = (Cells[I, T - 1] 
+                        + random.Next(3) * Cells[N - 1, T - 1] 
+                        + random.Next(3) * Cells[1, T - 1]) % 2;
+                }
+                else if (I == N - 1)
+                {
+                    Cells[I, T] = (Cells[I, T - 1] 
+                        + random.Next(3) * Cells[N - 2, T - 1] 
+                        + random.Next(3) * Cells[0, T - 1]) % 2;
+                }
+                else
+                {
+                    Cells[I, T] = (Cells[I, T - 1] 
+                        + random.Next(3) * Cells[I - 1, T - 1] 
+                        + random.Next(3) * Cells[I + 1, T - 1]) % 2;
+                }
+
+                return Cells[I, T];
+            }
+
+
+            int UpdateCellStochastic2(int[,] Cells, int I, int T, int N)
+            {
+                Random random = new Random();
+                int rand = random.Next(2);
+                if (I == 0)
+                {
+                    Cells[I, T] = (Cells[I, T - 1]
+                        + rand * Cells[N - 1, T - 1]
+                        + rand * Cells[1, T - 1]) % 2;
+                }
+                else if (I == N - 1)
+                {
+                    Cells[I, T] = (Cells[I, T - 1]
+                        + rand * Cells[N - 2, T - 1]
+                        + rand * Cells[0, T - 1]) % 2;
+                }
+                else
+                {
+                    Cells[I, T] = (Cells[I, T - 1]
+                        + rand * Cells[I - 1, T - 1]
+                        + Cells[I + 1, T - 1]) % 2;
+                }
+
+                return Cells[I, T];
+            }
